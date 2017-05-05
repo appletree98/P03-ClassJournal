@@ -21,30 +21,33 @@ public class Info extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        btnInfo = (Button) findViewById(R.id.buttonInfo);
+        btnEmail = (Button) findViewById(R.id.buttonEmail);
+
+        btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View arg0) {
+                // Intent to display data
+                Intent rpIntent = new Intent(Intent.ACTION_VIEW);
+                // Set the URL to be used.
+                rpIntent.setData(Uri.parse("http://www.rp.edu.sg"));
+                startActivity(rpIntent);
             }
         });
 
         btnEmail.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View arg0) {
+                email.putExtra(Intent.EXTRA_TEXT,
+                        "Hi faci, " +
+                                "I am ..." +
+                                "Please see my remarks so far, thank you!");
                 // The action you want this intent to do;
                 // ACTION_SEND is used to indicate sending text
                 Intent email = new Intent(Intent.ACTION_SEND);
                 // Put essentials like email address, subject & body text
                 email.putExtra(Intent.EXTRA_EMAIL,
                         new String[]{"jason_lim@rp.edu.sg"});
-                email.putExtra(Intent.EXTRA_SUBJECT,
-                        "Test Email from C347");
-                email.putExtra(Intent.EXTRA_TEXT,
-                        "Hi faci, " +
-                                "I am ..." +
-                "Please see my remarks so far, thank you!");
                 // This MIME type indicates email
                 email.setType("message/rfc822");
                 // createChooser shows user a list of app that can handle
