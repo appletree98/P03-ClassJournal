@@ -18,42 +18,33 @@ public class Info extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        btnInfo = (Button) findViewById(R.id.buttonInfo);
-        btnEmail = (Button) findViewById(R.id.buttonEmail);
-
-        btnInfo.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View arg0) {
-                // Intent to display data
-                Intent rpIntent = new Intent(Intent.ACTION_VIEW);
-                // Set the URL to be used.
-                rpIntent.setData(Uri.parse("http://www.rp.edu.sg"));
-                startActivity(rpIntent);
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
 
         btnEmail.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View arg0) {
-                Intent email = new Intent(Intent.ACTION_SEND);
-                String message = "";
-                for (int i=0; i<module.size(); i++){
-
-                    message +=
-                    email.putExtra(Intent.EXTRA_TEXT,
-                            "Hi faci, " +
-                                    "I am ..." +
-                                    "Please see my remarks so far, thank you!"
-                    );
-                }
                 // The action you want this intent to do;
                 // ACTION_SEND is used to indicate sending text
-
+                Intent email = new Intent(Intent.ACTION_SEND);
                 // Put essentials like email address, subject & body text
                 email.putExtra(Intent.EXTRA_EMAIL,
                         new String[]{"jason_lim@rp.edu.sg"});
-
+                email.putExtra(Intent.EXTRA_SUBJECT,
+                        "Test Email from C347");
+                email.putExtra(Intent.EXTRA_TEXT,
+                        "Hi faci, " +
+                                "I am ..." +
+                "Please see my remarks so far, thank you!");
                 // This MIME type indicates email
                 email.setType("message/rfc822");
                 // createChooser shows user a list of app that can handle
@@ -63,4 +54,5 @@ public class Info extends AppCompatActivity {
 
             }});
     }
+
 }
