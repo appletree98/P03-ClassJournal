@@ -60,18 +60,10 @@ public class Info extends AppCompatActivity {
                     email.putExtra(Intent.EXTRA_TEXT,
                             "Hi faci, " +
                                     "I am ..." +
-                                    "Please see my remarks so far, thank you!" + message
-                            + "Thank you!");
+                                    "Please see my remarks so far, thank you!" + message);
                 }
                 // The action you want this intent to do;
-                // The action you want this intent to do;
-                Intent email = new Intent(Intent.ACTION_SEND);
-                email.putExtra(Intent.EXTRA_TEXT,
-                        "Hi faci, " +
-                                "I am ..." +
-                                "Please see my remarks so far, thank you!");
-                // ACTION_SEND is used to indicate sending text
-                Intent email = new Intent(Intent.ACTION_SEND);
+
                 // Put essentials like email address, subject & body text
                 email.putExtra(Intent.EXTRA_EMAIL,
                         new String[]{"jason_lim@rp.edu.sg"});
