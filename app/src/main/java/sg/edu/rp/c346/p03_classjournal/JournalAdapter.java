@@ -53,7 +53,7 @@ public class JournalAdapter  extends ArrayAdapter<Journal> {
         //  We get back the food at the same index.
         Journal current = journal.get(position);
         // Set the TextView to show the food
-        tvWeek.setText(current.getWeek());
+        tvWeek.setText("Week " + current.getWeek());
         tvGrade.setText(current.getDgGrade());
         // Set the image to star or nostar accordingly
         // Return the nicely done up View to the ListView

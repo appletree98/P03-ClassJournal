@@ -27,6 +27,13 @@ public class AddData extends AppCompatActivity {
         rgGrade = (RadioGroup)findViewById(R.id.radiogroupGrade);
         tvWeek = (TextView)findViewById(R.id.textViewWeek);
 
+        Intent intentReceived = getIntent();
+        String weeks = intentReceived.getStringExtra("week");
+        tvWeek.setText("Week " + weeks);
+
+
+
+
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,13 +41,11 @@ public class AddData extends AppCompatActivity {
                 int selectedButtonId = rgGrade.getCheckedRadioButtonId();
                 RadioButton rbGrade = (RadioButton) findViewById(selectedButtonId);
                 String grade = rbGrade.getText().toString();
-                int week = 1;
-                Intent intent = getIntent();
-                String moduleCode = intent.getStringExtra("module code");
 
-                Journal added = new Journal(grade,moduleCode,week);
-                Intent i = new Intent(AddData.this,Info.class);
-                i.putExtra("journal", added);/////
+                Intent i = new Intent();
+                i.putExtra("grade", grade);
+                setResult(RESULT_OK, i);
+                finish();
 
             }
         });

@@ -24,6 +24,9 @@ public class Info extends AppCompatActivity {
     ArrayList<Journal> journal;
     ArrayAdapter aa;
 
+    int weekSize;
+    int requestCodeForAdd = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,13 +39,31 @@ public class Info extends AppCompatActivity {
         btnAdd = (Button)findViewById(R.id.buttonAdd);
         lvJ = (ListView)findViewById(R.id.ListViewJournal);
 
+
+
+
+       journal= new ArrayList<Journal>();
+
+        Journal obj1 = new Journal("A","C347",1);
+
+        Journal obj2 = new Journal("B","C347",2);
+        Journal obj3 = new Journal("C","C347",3);
+
+        journal.add(obj1);
+        journal.add(obj2);
+        journal.add(obj3);
+
         aa = new JournalAdapter(Info.this, R.layout.row2, journal);
-
-
+        lvJ.setAdapter(aa);
         Intent intent = getIntent();
-            final Journal jour = (Journal) intent.getSerializableExtra("journal");
-            journal.add(jour);
-            lvJ.setAdapter(aa);
+        String moduleC = intent.getStringExtra("module");
+
+
+//        Intent intent = getIntent();
+//            final Journal jour = (Journal) intent.getSerializableExtra("journal");
+//            journal.add(jour);
+//            lvJ.setAdapter(aa);
+
 
 //        lvJ.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //
@@ -98,12 +119,38 @@ public class Info extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent(Info.this,AddData.class);
-                startActivity(a);
+                weekSize = journal.size() + 1;
+                Intent weeks = new Intent(Info.this, AddData.class);
+                weeks.putExtra("week", journal.size() + 1 + "");
+                startActivityForResult(weeks, requestCodeForAdd);
             }
+
         });
 
 
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        Intent intent = getIntent();
+        String moduleC = intent.getStringExtra("module");
+
+        // Only handle when 2nd activity closed normally
+        //  and data contains something
+        if (resultCode == RESULT_OK) {
+            if (data != null) {
+                // Get data passed back from 2nd activity
+                String grade = data.getStringExtra("grade");
+                // Get data passed back from 2nd activity
+
+
+                if (requestCode == requestCodeForAdd) {
+                    journal.add(new Journal(grade,moduleC,weekSize));
+                    aa.notifyDataSetChanged();
+                }
+
+            }
+        }
+    }
 }
