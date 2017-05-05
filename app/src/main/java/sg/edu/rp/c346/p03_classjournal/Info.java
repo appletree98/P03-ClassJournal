@@ -13,6 +13,7 @@ import android.widget.Button;
 public class Info extends AppCompatActivity {
     Button btnInfo;
     Button btnEmail;
+    Button btnAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class Info extends AppCompatActivity {
 
         btnInfo = (Button) findViewById(R.id.buttonInfo);
         btnEmail = (Button) findViewById(R.id.buttonEmail);
+        btnAdd = (Button)findViewById(R.id.buttonAdd);
 
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,13 +40,13 @@ public class Info extends AppCompatActivity {
         btnEmail.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View arg0) {
-                //email.putExtra(Intent.EXTRA_TEXT,
+                // The action you want this intent to do;
+                Intent email = new Intent(Intent.ACTION_SEND);
+                email.putExtra(Intent.EXTRA_TEXT,
                         "Hi faci, " +
                                 "I am ..." +
-                                "Please see my remarks so far, thank you!")
-                // The action you want this intent to do;
+                                "Please see my remarks so far, thank you!");
                 // ACTION_SEND is used to indicate sending text
-                Intent email = new Intent(Intent.ACTION_SEND);
                 // Put essentials like email address, subject & body text
                 email.putExtra(Intent.EXTRA_EMAIL,
                         new String[]{"jason_lim@rp.edu.sg"});
@@ -56,6 +58,13 @@ public class Info extends AppCompatActivity {
                         "Choose an Email client :"));
 
             }});
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(Info.this,AddData.class);
+                startActivity(a);
+            }
+        });
     }
 
 }
