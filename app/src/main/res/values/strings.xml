@@ -3,4 +3,5 @@
     <string name="title_activity_info">Info</string>
     <string name="c347">C347</string>
     <string name="android">Android Programming II</string>
+    <string name="title_activity_add_data">AddData</string>
 </resources>
