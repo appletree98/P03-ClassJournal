@@ -36,18 +36,24 @@ public class Info extends AppCompatActivity {
         btnEmail.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View arg0) {
+                Intent email = new Intent(Intent.ACTION_SEND);
+                String message = "";
+                for (int i=0; i<module.size(); i++){
+
+                    message +=
+                    email.putExtra(Intent.EXTRA_TEXT,
+                            "Hi faci, " +
+                                    "I am ..." +
+                                    "Please see my remarks so far, thank you!"
+                    );
+                }
                 // The action you want this intent to do;
                 // ACTION_SEND is used to indicate sending text
-                Intent email = new Intent(Intent.ACTION_SEND);
+
                 // Put essentials like email address, subject & body text
                 email.putExtra(Intent.EXTRA_EMAIL,
                         new String[]{"jason_lim@rp.edu.sg"});
-                email.putExtra(Intent.EXTRA_SUBJECT,
-                        "Test Email from C347");
-                email.putExtra(Intent.EXTRA_TEXT,
-                        "Hi faci, " +
-                                "I am ..." +
-                "Please see my remarks so far, thank you!");
+
                 // This MIME type indicates email
                 email.setType("message/rfc822");
                 // createChooser shows user a list of app that can handle
