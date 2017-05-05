@@ -8,12 +8,21 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class Info extends AppCompatActivity {
     Button btnInfo;
     Button btnEmail;
     Button btnAdd;
+    ListView lvJ;
+    ArrayList<Journal> journal;
+    ArrayAdapter aa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +34,27 @@ public class Info extends AppCompatActivity {
         btnInfo = (Button) findViewById(R.id.buttonInfo);
         btnEmail = (Button) findViewById(R.id.buttonEmail);
         btnAdd = (Button)findViewById(R.id.buttonAdd);
+        lvJ = (ListView)findViewById(R.id.ListViewJournal);
+
+        aa = new JournalAdapter(Info.this, R.layout.row2, journal);
+
+
+        Intent intent = getIntent();
+            Journal jour = (Journal) intent.getSerializableExtra("journal");
+            journal.add(jour);
+            lvJ.setAdapter(aa);
+
+//        lvJ.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+////                Food selectedFood = food.get(position);
+////
+////                Toast.makeText(MainActivity.this, selectedFood.getName()
+////                                + " Star: " + selectedFood.isStar(),
+////                        Toast.LENGTH_LONG).show();
+//            }
+//        });
 
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +95,8 @@ public class Info extends AppCompatActivity {
                 startActivity(a);
             }
         });
+
+
     }
 
 }

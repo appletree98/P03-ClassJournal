@@ -26,14 +26,15 @@ public class AddData extends AppCompatActivity {
         btnSubmit = (Button)findViewById(R.id.buttonSubmit);
         rgGrade = (RadioGroup)findViewById(R.id.radiogroupGrade);
         tvWeek = (TextView)findViewById(R.id.textViewWeek);
-        int selectedButtonId = rgGrade.getCheckedRadioButtonId();
-        final RadioButton rbGrade = (RadioButton) findViewById(selectedButtonId);
+
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int selectedButtonId = rgGrade.getCheckedRadioButtonId();
+                RadioButton rbGrade = (RadioButton) findViewById(selectedButtonId);
                 String grade = rbGrade.getText().toString();
-                int week = Integer.parseInt(tvWeek.getText().toString());
+                int week = 1;
                 Intent intent = getIntent();
                 String moduleCode = intent.getStringExtra("module code");
 
