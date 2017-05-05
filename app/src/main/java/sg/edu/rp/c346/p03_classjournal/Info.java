@@ -1,5 +1,6 @@
 package sg.edu.rp.c346.p03_classjournal;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,12 +8,19 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+
+import java.util.ArrayList;
 
 public class Info extends AppCompatActivity {
     Button btnInfo;
     Button btnEmail;
+    ArrayList<Journal> al;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,16 +43,26 @@ public class Info extends AppCompatActivity {
             }
         });
 
+
         btnEmail.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View arg0) {
-                //email.putExtra(Intent.EXTRA_TEXT,
-                        "Hi faci, " +
-                                "I am ..." +
-                                "Please see my remarks so far, thank you!")
+                Intent email = new Intent(Intent.ACTION_SEND);
+                String message = "";
+
+                for(int i=0; i < al.size(); i++) {
+                    Journal currentJournal = al.get(i);
+                    message += currentJournal.getWeek() + currentJournal.getDgGrade();
+
+
+                    email.putExtra(Intent.EXTRA_TEXT,
+                            "Hi faci, " +
+                                    "I am ..." +
+                                    "Please see my remarks so far, thank you!" + message
+                            + "Thank you!");
+                }
                 // The action you want this intent to do;
                 // ACTION_SEND is used to indicate sending text
-                Intent email = new Intent(Intent.ACTION_SEND);
                 // Put essentials like email address, subject & body text
                 email.putExtra(Intent.EXTRA_EMAIL,
                         new String[]{"jason_lim@rp.edu.sg"});
