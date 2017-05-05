@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">P03-ClassJournal</string>
     <string name="title_activity_info">Info</string>
+    <string name="c347">C347</string>
+    <string name="android">Android Programming II</string>
 </resources>
