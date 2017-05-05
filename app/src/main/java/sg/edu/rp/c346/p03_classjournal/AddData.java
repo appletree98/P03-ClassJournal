@@ -39,7 +39,7 @@ public class AddData extends AppCompatActivity {
 
                 Journal added = new Journal(grade,moduleCode,week);
                 Intent i = new Intent(AddData.this,Info.class);
-                i.putExtra("journal", added);
+                i.putExtra("journal", added);//
 
             }
         });
