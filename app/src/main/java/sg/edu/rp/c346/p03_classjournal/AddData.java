@@ -36,6 +36,11 @@ public class AddData extends AppCompatActivity {
                 int week = Integer.parseInt(tvWeek.getText().toString());
                 Intent intent = getIntent();
                 String moduleCode = intent.getStringExtra("module code");
+
+                Journal added = new Journal(grade,moduleCode,week);
+                Intent i = new Intent(AddData.this,Info.class);
+                i.putExtra("journal", added);
+
             }
         });
 
