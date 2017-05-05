@@ -72,6 +72,7 @@ public class Info extends AppCompatActivity {
             public void onClick(View arg0) {
                 // The action you want this intent to do;
                 Intent email = new Intent(Intent.ACTION_SEND);
+                
                 String message = "";
                 for(int i=0; i < journal.size(); i++) {
                     Journal currentJournal = journal.get(i);
