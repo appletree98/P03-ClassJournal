@@ -40,7 +40,7 @@ public class Info extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-            Journal jour = (Journal) intent.getSerializableExtra("journal");
+            final Journal jour = (Journal) intent.getSerializableExtra("journal");
             journal.add(jour);
             lvJ.setAdapter(aa);
 
@@ -72,10 +72,16 @@ public class Info extends AppCompatActivity {
             public void onClick(View arg0) {
                 // The action you want this intent to do;
                 Intent email = new Intent(Intent.ACTION_SEND);
-                email.putExtra(Intent.EXTRA_TEXT,
-                        "Hi faci, " +
-                                "I am ..." +
-                                "Please see my remarks so far, thank you!");
+                String message = "";
+                for(int i=0; i < journal.size(); i++) {
+                    Journal currentJournal = journal.get(i);
+                    message += currentJournal.getWeek() + currentJournal.getDgGrade();
+
+                    email.putExtra(Intent.EXTRA_TEXT,
+                            "Hi faci, " +
+                                    "I am ..." +
+                                    "Please see my remarks so far, thank you!" + message);
+                }
                 // ACTION_SEND is used to indicate sending text
                 // Put essentials like email address, subject & body text
                 email.putExtra(Intent.EXTRA_EMAIL,
