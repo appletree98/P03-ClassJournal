@@ -3,7 +3,9 @@ package sg.edu.rp.c346.p03_classjournal;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -29,8 +31,14 @@ public class MainActivity extends AppCompatActivity {
         aa = new ModulesAdapter(this,R.layout.row,module);
         lvModules.setAdapter(aa);
 
-        Intent i = new Intent(MainActivity.this,Info.class);
-        i.putExtra("module","android");
-        startActivity(i);
+        lvModules.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Modules selectedModule = module.get(position);
+                Intent i = new Intent(MainActivity.this,Info.class);
+                i.putExtra("module","android");
+                startActivity(i);
+            }
+        });
     }
 }
