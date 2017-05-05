@@ -29,7 +29,7 @@ public class Info extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);//
+        setSupportActionBar(toolbar);///
 
         btnInfo = (Button) findViewById(R.id.buttonInfo);
         btnEmail = (Button) findViewById(R.id.buttonEmail);
