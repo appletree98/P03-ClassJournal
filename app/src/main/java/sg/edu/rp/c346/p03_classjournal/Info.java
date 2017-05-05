@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 
 public class Info extends AppCompatActivity {
     Button btnInfo;
@@ -37,10 +38,10 @@ public class Info extends AppCompatActivity {
         btnEmail.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View arg0) {
-                email.putExtra(Intent.EXTRA_TEXT,
+                //email.putExtra(Intent.EXTRA_TEXT,
                         "Hi faci, " +
                                 "I am ..." +
-                                "Please see my remarks so far, thank you!");
+                                "Please see my remarks so far, thank you!")
                 // The action you want this intent to do;
                 // ACTION_SEND is used to indicate sending text
                 Intent email = new Intent(Intent.ACTION_SEND);
