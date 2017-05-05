@@ -19,6 +19,10 @@
         <activity
             android:name=".Info"
             android:label="@string/title_activity_info"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AddData"
+            android:label="@string/title_activity_add_data"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
